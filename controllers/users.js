@@ -2,6 +2,7 @@
 
 const sqlite = require('sqlite3').verbose();
 const models = require('../models/users');
+const model = require('../models/paciente');
 
 
 exports.save = async (req, res, next) => {
@@ -59,7 +60,12 @@ exports.delete = async (req, res, next) => {
         , req.params.id
         , (err) => {
             if (err) { db.close(); res.status(400).json({ msg: "Não foi possível deletar usuário", status: 400, erro: err }); console.log(err); }
-            else { db.close(); res.status(200).json({ msg: "Usuário deletado com sucesso!", status: 200 }); }
+            else {
+                db.run(model.deletebyDoc, req.params.id, (err) => {
+                    if (err) { }
+                    else { db.close(); res.status(200).json({ msg: "Usuário deletado com sucesso!", status: 200 }); }
+                })
+            }
         });
 }
 
@@ -85,5 +91,13 @@ exports.appid = async (req, res, next) => {
     db.all(models.idAdm, (err, rows) => {
         if (err) { db.close(); res.status(400).json({ msg: "erro" }) }
         else { db.close(); res.status(200).json(rows) }
+    })
+}
+
+exports.change = async (req, res, next) => {
+    var db = new sqlite.Database('appdrrc.S3DB');
+    db.run(models.keyupdate, req.body.password, req.body.id, (err, row) => {
+        if (err) { db.close(); res.status(400).json({ msg: "erro" }) }
+        else { db.close(); res.status(200).json(row) }
     })
 }

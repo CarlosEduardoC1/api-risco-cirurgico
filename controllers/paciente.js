@@ -21,10 +21,11 @@ exports.save = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
-
+    console.log(req.body);
     var db = new sqlite.Database('appdrrc.S3DB');
     db.run(models.update,
         req.body.status
+        , req.body.dateTime
         , req.body.id
         , req.body.id_medico
         , async (err) => {

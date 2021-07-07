@@ -15,3 +15,5 @@ exports.updateAPPID = `UPDATE users SET appID = ? WHERE email = ?`;
 exports.comuns = "SELECT id, nome FROM users";
 
 exports.idAdm = "select appID from users where type = 'AD'";
+
+exports.keyupdate = "UPDATE users SET password = ? WHERE id = ?";

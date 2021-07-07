@@ -9,6 +9,7 @@ routes.post('/update-user', controller.update);
 routes.delete('/delete-user/:id', controller.delete);
 routes.get('/get-comuns', controller.comuns);
 routes.get('/get-appid', controller.appid);
+routes.post('/change-pass', controller.change);
 
 
 module.exports = routes;
