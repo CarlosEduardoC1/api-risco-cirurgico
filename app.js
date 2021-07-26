@@ -20,7 +20,7 @@ app.use('/paciente', paciente);
 app.use('/notificaiton', notification);
 app.use('/mail', mail);
 
-app.listen(process.env.PORT || 3050, function () {
+app.listen(process.env.PORT || 3060, function () {
     var db = new sqlite.Database('appdrrc.S3DB', (err) => {
         if (err) console.log(err);
         else {
