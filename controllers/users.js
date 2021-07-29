@@ -14,8 +14,8 @@ exports.save = async (req, res, next) => {
         , req.body.appID
         , req.body.type
         , (err) => {
-            if (err) { db.close(); res.status(400).json({ msg: "Não foi possível cadastrar usuário", status: 400, erro: err }); console.log(err); }
-            else { db.close(); res.status(200).json({ msg: "Usuário cadastrado com sucesso!", status: 200 }); }
+            if (err) { console.log(err); db.close(); res.status(400).json({ msg: "Não foi possível cadastrar usuário", status: 400, erro: err }); console.log(err); }
+            else {console.log('else'); db.close(); res.status(200).json({ msg: "Usuário cadastrado com sucesso!", status: 200 }); }
         });
 }
 
